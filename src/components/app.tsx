@@ -1,7 +1,14 @@
+import TodoInput from './todo-input'
+import TodoList from './todo-list'
+import TodoProvider from './todo-provider'
+
 export default function App() {
   return (
-    <div className="app">
-      <h1 className="title">Hello React</h1>
-    </div>
+    <TodoProvider>
+      <div className="todoapp">
+        <TodoInput />
+        <TodoList />
+      </div>
+    </TodoProvider>
   )
 }
