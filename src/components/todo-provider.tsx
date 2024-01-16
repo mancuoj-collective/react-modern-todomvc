@@ -1,11 +1,9 @@
-import { ReactNode, createContext, useContext, useEffect, useReducer } from 'react'
-import { ActionType, Todo, TodoProviderState } from '../lib/types'
+import { ReactNode, createContext, useContext, useEffect, useReducer, useState } from 'react'
+import { ActionType, Todo, TodoProviderState, VisibilityProviderState, VisibilityType } from '../lib/types'
 
 const STORAGE_KEY = 'react-todomvc'
-const TodosContext = createContext<TodoProviderState>({
-  todos: [],
-  dispatch: () => null,
-})
+const TodosContext = createContext<TodoProviderState>({ todos: [], dispatch: () => null })
+const VisibilityContext = createContext<VisibilityProviderState>({ visibility: 'all', setVisibility: () => null })
 
 function todosReducer(todos: Todo[], action: ActionType) {
   switch (action.type) {
@@ -24,23 +22,27 @@ function todosReducer(todos: Todo[], action: ActionType) {
   }
 }
 
-export default function TodoProvider({ children, ...props }: { children: ReactNode }) {
-  const [todos, dispatch] = useReducer(todosReducer, [], (init) => {
-    const storedTodos = localStorage.getItem(STORAGE_KEY)
-    return storedTodos ? JSON.parse(storedTodos) : init
-  })
+export default function TodoProvider({ children }: { children: ReactNode }) {
+  const [todos, dispatch] = useReducer(todosReducer, null, () => JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'))
+  const [visibility, setVisibility] = useState<VisibilityType>('all')
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
   }, [todos])
 
   return (
-    <TodosContext.Provider value={{ todos, dispatch }} {...props}>
-      {children}
+    <TodosContext.Provider value={{ todos, dispatch }}>
+      <VisibilityContext.Provider value={{ visibility, setVisibility }}>
+        {children}
+      </VisibilityContext.Provider>
     </TodosContext.Provider>
   )
 }
 
 export function useTodos() {
   return useContext(TodosContext)
+}
+
+export function useVisibility() {
+  return useContext(VisibilityContext)
 }
