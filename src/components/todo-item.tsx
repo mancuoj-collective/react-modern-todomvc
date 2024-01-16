@@ -1,12 +1,37 @@
 import { clsx } from 'clsx'
 import { Todo } from '../lib/types'
 import { useTodos } from './todo-provider'
+import { useEffect, useRef, useState } from 'react'
 
 export default function TodoItem({ todo }: { todo: Todo }) {
   const { dispatch } = useTodos()
+  const [isEditing, setIsEditing] = useState(false)
+  const [editedTitle, setEditedTitle] = useState(todo.title)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  function handleDoneEdit() {
+    const title = editedTitle.trim()
+    if (!title) {
+      dispatch({ type: 'remove', id: todo.id })
+    } else {
+      dispatch({ type: 'edit', todo: { ...todo, title } })
+    }
+    setIsEditing(false)
+  }
+
+  function handleCancelEdit() {
+    setEditedTitle(todo.title)
+    setIsEditing(false)
+  }
+
+  useEffect(() => {
+    if (isEditing && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [isEditing])
 
   return (
-    <li className={clsx('todo', { completed: todo.completed })}>
+    <li className={clsx('todo', { completed: todo.completed, editing: isEditing })}>
       <div className="view">
         <input
           type="checkbox"
@@ -19,9 +44,22 @@ export default function TodoItem({ todo }: { todo: Todo }) {
             })
           }}
         />
-        <label>{todo.title}</label>
+        <label onDoubleClick={() => setIsEditing(true)}>{todo.title}</label>
         <button className="destroy" onClick={() => dispatch({ type: 'remove', id: todo.id })}></button>
       </div>
+      {isEditing && (
+        <input
+          ref={inputRef}
+          className="edit"
+          value={editedTitle}
+          onChange={(e) => setEditedTitle(e.target.value)}
+          onBlur={handleDoneEdit}
+          onKeyUp={(e) => {
+            if (e.key === 'Enter') handleDoneEdit()
+            else if (e.key === 'Escape') handleCancelEdit()
+          }}
+        />
+      )}
     </li>
   )
 }
