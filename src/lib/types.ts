@@ -3,6 +3,7 @@ export type ActionType =
   | { type: 'remove'; id: string }
   | { type: 'edit'; todo: Todo }
   | { type: 'toggle-all'; checked: boolean }
+  | { type: 'remove-completed' }
 
 export interface Todo {
   id: string

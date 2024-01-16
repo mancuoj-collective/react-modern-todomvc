@@ -17,6 +17,8 @@ function todosReducer(todos: Todo[], action: ActionType) {
       return todos.map((todo) => (todo.id === action.todo.id ? action.todo : todo))
     case 'toggle-all':
       return todos.map((todo) => ({ ...todo, completed: action.checked }))
+    case 'remove-completed':
+      return todos.filter((todo) => !todo.completed)
     default:
       return todos
   }
