@@ -1,13 +1,13 @@
-import { ReactNode, createContext, useContext, useReducer } from 'react'
-import { ActionType, TodoItem, TodoProviderState } from '../lib/types'
+import { ReactNode, createContext, useContext, useEffect, useReducer } from 'react'
+import { ActionType, Todo, TodoProviderState } from '../lib/types'
 
-const initialTodos: TodoItem[] = []
+const STORAGE_KEY = 'react-todomvc'
 const TodosContext = createContext<TodoProviderState>({
-  todos: initialTodos,
+  todos: [],
   dispatch: () => null,
 })
 
-function todosReducer(todos: TodoItem[], action: ActionType) {
+function todosReducer(todos: Todo[], action: ActionType) {
   switch (action.type) {
     case 'add':
       return [...todos, { id: crypto.randomUUID(), title: action.title, completed: false }]
@@ -15,13 +15,23 @@ function todosReducer(todos: TodoItem[], action: ActionType) {
       return todos.filter((todo) => todo.id !== action.id)
     case 'edit':
       return todos.map((todo) => (todo.id === action.todo.id ? action.todo : todo))
+    case 'toggle-all':
+      return todos.map((todo) => ({ ...todo, completed: action.checked }))
     default:
       return todos
   }
 }
 
 export default function TodoProvider({ children, ...props }: { children: ReactNode }) {
-  const [todos, dispatch] = useReducer(todosReducer, initialTodos)
+  const [todos, dispatch] = useReducer(todosReducer, [], (init) => {
+    const storedTodos = localStorage.getItem(STORAGE_KEY)
+    return storedTodos ? JSON.parse(storedTodos) : init
+  })
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+  }, [todos])
+
   return (
     <TodosContext.Provider value={{ todos, dispatch }} {...props}>
       {children}
