@@ -9,7 +9,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
   const [editedTitle, setEditedTitle] = useState(todo.title)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  function handleDoneEdit() {
+  function handleEdit() {
     const title = editedTitle.trim()
     if (!title) {
       dispatch({ type: 'remove', id: todo.id })
@@ -53,9 +53,9 @@ export default function TodoItem({ todo }: { todo: Todo }) {
           className="edit"
           value={editedTitle}
           onChange={(e) => setEditedTitle(e.target.value)}
-          onBlur={handleDoneEdit}
+          onBlur={handleEdit}
           onKeyUp={(e) => {
-            if (e.key === 'Enter') handleDoneEdit()
+            if (e.key === 'Enter') handleEdit()
             else if (e.key === 'Escape') handleCancelEdit()
           }}
         />

@@ -1,13 +1,14 @@
-import { KeyboardEvent, useState } from 'react'
+import { useState } from 'react'
 import { useTodos } from './todo-provider'
 
 export default function TodoInput() {
   const [text, setText] = useState('')
   const { dispatch } = useTodos()
 
-  function addTodo(e: KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Enter' && text.trim()) {
-      dispatch({ type: 'add', title: text })
+  function handleAdd() {
+    const title = text.trim()
+    if (title) {
+      dispatch({ type: 'add', title })
       setText('')
     }
   }
@@ -21,7 +22,9 @@ export default function TodoInput() {
         placeholder="What needs to be done?"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        onKeyUp={(e) => addTodo(e)}
+        onKeyUp={(e) => {
+          if (e.key === 'Enter') handleAdd()
+        }}
       />
     </header>
   )
