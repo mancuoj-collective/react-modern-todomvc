@@ -1,4 +1,4 @@
-import { useTodos } from './todo-provider'
+import { useTodos } from "./todo-provider"
 
 export default function TodoToggle() {
   const { todos, dispatch } = useTodos()
@@ -11,7 +11,7 @@ export default function TodoToggle() {
         type="checkbox"
         checked={todos.every((todo) => todo.completed)}
         onChange={(e) => {
-          dispatch({ type: 'toggle-all', checked: e.target.checked })
+          dispatch({ type: "toggle-all", checked: e.target.checked })
         }}
       />
       <label htmlFor="toggle-all">Mark all as completed</label>

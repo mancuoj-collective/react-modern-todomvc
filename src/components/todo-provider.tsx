@@ -1,21 +1,45 @@
-import { ReactNode, createContext, useContext, useEffect, useReducer, useState } from 'react'
-import { ActionType, Todo, TodoProviderState, VisibilityProviderState, VisibilityType } from '../lib/types'
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react"
+import {
+  ActionType,
+  Todo,
+  TodoProviderState,
+  VisibilityProviderState,
+  VisibilityType,
+} from "../lib/types"
 
-const STORAGE_KEY = 'react-todomvc'
-const TodosContext = createContext<TodoProviderState>({ todos: [], dispatch: () => null })
-const VisibilityContext = createContext<VisibilityProviderState>({ visibility: 'all', setVisibility: () => null })
+const STORAGE_KEY = "react-todomvc"
+const TodosContext = createContext<TodoProviderState>({
+  todos: [],
+  dispatch: () => null,
+})
+const VisibilityContext = createContext<VisibilityProviderState>({
+  visibility: "all",
+  setVisibility: () => null,
+})
 
 function todosReducer(todos: Todo[], action: ActionType) {
   switch (action.type) {
-    case 'add':
-      return [...todos, { id: crypto.randomUUID(), title: action.title, completed: false }]
-    case 'remove':
+    case "add":
+      return [
+        ...todos,
+        { id: crypto.randomUUID(), title: action.title, completed: false },
+      ]
+    case "remove":
       return todos.filter((todo) => todo.id !== action.id)
-    case 'edit':
-      return todos.map((todo) => (todo.id === action.todo.id ? action.todo : todo))
-    case 'toggle-all':
+    case "edit":
+      return todos.map((todo) =>
+        todo.id === action.todo.id ? action.todo : todo,
+      )
+    case "toggle-all":
       return todos.map((todo) => ({ ...todo, completed: action.checked }))
-    case 'remove-completed':
+    case "remove-completed":
       return todos.filter((todo) => !todo.completed)
     default:
       return todos
@@ -23,8 +47,10 @@ function todosReducer(todos: Todo[], action: ActionType) {
 }
 
 export default function TodoProvider({ children }: { children: ReactNode }) {
-  const [todos, dispatch] = useReducer(todosReducer, null, () => JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'))
-  const [visibility, setVisibility] = useState<VisibilityType>('all')
+  const [todos, dispatch] = useReducer(todosReducer, null, () =>
+    JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"),
+  )
+  const [visibility, setVisibility] = useState<VisibilityType>("all")
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))

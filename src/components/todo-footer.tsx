@@ -1,5 +1,5 @@
-import { useTodos } from './todo-provider'
-import TodoFilter from './todo-filter'
+import { useTodos } from "./todo-provider"
+import TodoFilter from "./todo-filter"
 
 export default function TodoFooter() {
   const { todos, dispatch } = useTodos()
@@ -10,11 +10,14 @@ export default function TodoFooter() {
       <footer className="footer">
         <span className="todo-count">
           <strong>{remaining}</strong>
-          <span>{remaining === 1 ? ' item' : ' items'}</span>
+          <span>{remaining === 1 ? " item" : " items"} left</span>
         </span>
         <TodoFilter />
         {todos.length > remaining && (
-          <button className="clear-completed" onClick={() => dispatch({ type: 'remove-completed' })}>
+          <button
+            className="clear-completed"
+            onClick={() => dispatch({ type: "remove-completed" })}
+          >
             Clear completed
           </button>
         )}

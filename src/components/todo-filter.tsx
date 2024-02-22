@@ -1,26 +1,23 @@
-import { clsx } from 'clsx'
-import { useVisibility } from './todo-provider'
+import { clsx } from "clsx"
+import { useVisibility } from "./todo-provider"
+import { VisibilityType } from "../lib/types"
 
 export default function TodoFilter() {
   const { visibility, setVisibility } = useVisibility()
+  const filters: VisibilityType[] = ["all", "active", "completed"]
 
   return (
     <ul className="filters">
-      <li>
-        <a className={clsx({ selected: visibility === 'all' })} onClick={() => setVisibility('all')}>
-          All
-        </a>
-      </li>
-      <li>
-        <a className={clsx({ selected: visibility === 'active' })} onClick={() => setVisibility('active')}>
-          Active
-        </a>
-      </li>
-      <li>
-        <a className={clsx({ selected: visibility === 'completed' })} onClick={() => setVisibility('completed')}>
-          Completed
-        </a>
-      </li>
+      {filters.map((filter) => (
+        <li key={filter}>
+          <a
+            className={clsx({ selected: visibility === filter })}
+            onClick={() => setVisibility(filter)}
+          >
+            {filter.charAt(0).toUpperCase() + filter.slice(1)}
+          </a>
+        </li>
+      ))}
     </ul>
   )
 }

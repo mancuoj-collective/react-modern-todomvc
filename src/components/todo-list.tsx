@@ -1,6 +1,6 @@
-import { useTodos, useVisibility } from './todo-provider'
-import TodoToggle from './todo-toggle'
-import TodoItem from './todo-item'
+import { useTodos, useVisibility } from "./todo-provider"
+import TodoToggle from "./todo-toggle"
+import TodoItem from "./todo-item"
 
 export default function TodoList() {
   const { todos } = useTodos()
@@ -8,9 +8,9 @@ export default function TodoList() {
 
   const filteredTodos = todos.filter((todo) => {
     switch (visibility) {
-      case 'active':
+      case "active":
         return !todo.completed
-      case 'completed':
+      case "completed":
         return todo.completed
       default:
         return true
