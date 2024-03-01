@@ -1,5 +1,5 @@
 import { clsx } from "clsx"
-import { Todo } from "../lib/types"
+import { Todo } from "../types"
 import { useTodos } from "./todo-provider"
 import { useEffect, useRef, useState } from "react"
 

@@ -12,7 +12,7 @@ import {
   TodoProviderState,
   VisibilityProviderState,
   VisibilityType,
-} from "../lib/types"
+} from "../types"
 
 const STORAGE_KEY = "react-todomvc"
 const TodosContext = createContext<TodoProviderState>({
