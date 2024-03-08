@@ -1,4 +1,4 @@
-import { clsx } from "clsx"
+import { clsx } from "ts-clsx"
 import { useVisibility } from "./todo-provider"
 import { VisibilityType } from "../types"
 
