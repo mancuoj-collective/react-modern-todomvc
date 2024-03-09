@@ -1,7 +1,7 @@
-import { clsx } from "ts-clsx"
-import { Todo } from "../types"
-import { useTodos } from "./todo-provider"
-import { useEffect, useRef, useState } from "react"
+import { clsx } from 'ts-clsx'
+import { Todo } from '../types'
+import { useTodos } from './todo-provider'
+import { useEffect, useRef, useState } from 'react'
 
 export default function TodoItem({ todo }: { todo: Todo }) {
   const { dispatch } = useTodos()
@@ -12,9 +12,9 @@ export default function TodoItem({ todo }: { todo: Todo }) {
   function handleEdit() {
     const title = editedTitle.trim()
     if (!title) {
-      dispatch({ type: "remove", id: todo.id })
+      dispatch({ type: 'remove', id: todo.id })
     } else {
-      dispatch({ type: "edit", todo: { ...todo, title } })
+      dispatch({ type: 'edit', todo: { ...todo, title } })
     }
     setIsEditing(false)
   }
@@ -32,7 +32,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
 
   return (
     <li
-      className={clsx("todo", {
+      className={clsx('todo', {
         completed: todo.completed,
         editing: isEditing,
       })}
@@ -44,7 +44,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
           checked={todo.completed}
           onChange={(e) => {
             dispatch({
-              type: "edit",
+              type: 'edit',
               todo: { ...todo, completed: e.target.checked },
             })
           }}
@@ -52,7 +52,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
         <label onDoubleClick={() => setIsEditing(true)}>{todo.title}</label>
         <button
           className="destroy"
-          onClick={() => dispatch({ type: "remove", id: todo.id })}
+          onClick={() => dispatch({ type: 'remove', id: todo.id })}
         ></button>
       </div>
       {isEditing && (
@@ -63,8 +63,8 @@ export default function TodoItem({ todo }: { todo: Todo }) {
           onChange={(e) => setEditedTitle(e.target.value)}
           onBlur={handleEdit}
           onKeyUp={(e) => {
-            if (e.key === "Enter") handleEdit()
-            else if (e.key === "Escape") handleCancelEdit()
+            if (e.key === 'Enter') handleEdit()
+            else if (e.key === 'Escape') handleCancelEdit()
           }}
         />
       )}

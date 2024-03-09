@@ -14,12 +14,12 @@
     "@types/react-dom": "^18.2.21",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "prettier": "^3.2.5",
-    "ts-clsx": "^0.0.1",
+    "ts-clsx": "^1.0.5",
     "typescript": "^5.4.2",
     "vite": "^5.1.5"
   },
   "prettier": {
     "semi": false,
-    "trailingComma": "all"
+    "singleQuote": true
   }
 }

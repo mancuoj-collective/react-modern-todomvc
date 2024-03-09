@@ -1,15 +1,15 @@
-import { useState } from "react"
-import { useTodos } from "./todo-provider"
+import { useState } from 'react'
+import { useTodos } from './todo-provider'
 
 export default function TodoInput() {
-  const [text, setText] = useState("")
+  const [text, setText] = useState('')
   const { dispatch } = useTodos()
 
   function handleAdd() {
     const title = text.trim()
     if (title) {
-      dispatch({ type: "add", title })
-      setText("")
+      dispatch({ type: 'add', title })
+      setText('')
     }
   }
 
@@ -23,7 +23,7 @@ export default function TodoInput() {
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyUp={(e) => {
-          if (e.key === "Enter") handleAdd()
+          if (e.key === 'Enter') handleAdd()
         }}
       />
     </header>
