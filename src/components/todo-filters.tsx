@@ -7,7 +7,7 @@ export default function TodoFilters() {
   return (
     <ul className="filters">
       {filters.map((filter) => (
-        <Filter filter={filter} />
+        <Filter key={filter} filter={filter} />
       ))}
     </ul>
   )
@@ -16,7 +16,7 @@ export default function TodoFilters() {
 function Filter({ filter }: { filter: VisibilityType }) {
   const { visibility, setVisibility } = useVisibility()
   return (
-    <li key={filter}>
+    <li>
       <a
         className={clsx({ selected: visibility === filter })}
         onClick={() => setVisibility(filter)}
