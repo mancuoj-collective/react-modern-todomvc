@@ -11,6 +11,9 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  ts-clsx:
+    specifier: ^1.2.0
+    version: 1.2.0
 
 devDependencies:
   '@types/react':
@@ -25,9 +28,6 @@ devDependencies:
   prettier:
     specifier: ^3.2.5
     version: 3.2.5
-  ts-clsx:
-    specifier: ^1.1.0
-    version: 1.1.0
   typescript:
     specifier: ^5.4.2
     version: 5.4.2
@@ -638,9 +638,9 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /ts-clsx@1.1.0:
-    resolution: {integrity: sha512-KtCkXvKKEU5Kt/tIazU0rHoQvelZjdmNom1U8McGgu/0ZQ8ip06pX2mQN9x9pgOp2Lm8gUwzTdB7L95+86vSKA==}
-    dev: true
+  /ts-clsx@1.2.0:
+    resolution: {integrity: sha512-GJDHikPcsjlHDsnrmALXc/YIttyXxAc08NM7jwW9aQsjdRGI1NsXlo2Oj0pr5dwT+lpL+1ZBebf2SbVEXrUKpg==}
+    dev: false
 
   /typescript@5.4.2:
     resolution: {integrity: sha512-+2/g0Fds1ERlP6JsakQQDXjZdZMM+rqpamFZJEKh4kwTIn3iDkgKtby0CeNd5ATNZ4Ry1ax15TMx0W2V+miizQ==}
