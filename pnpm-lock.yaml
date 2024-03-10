@@ -16,6 +16,9 @@ dependencies:
     version: 1.2.0
 
 devDependencies:
+  '@mancuoj/prettier-config':
+    specifier: ^0.0.1
+    version: 0.0.1(prettier@3.2.5)
   '@types/react':
     specifier: ^18.2.64
     version: 18.2.64
@@ -243,6 +246,14 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@mancuoj/prettier-config@0.0.1(prettier@3.2.5):
+    resolution: {integrity: sha512-to1DBRTI8hfzoMuXRW3sQB7y1axIW/+fc+h7A7yiAH8fbJPFEIdOgePhf1rxyB3xGsQ0qexAyoWCfEk7Xe5zsA==}
+    peerDependencies:
+      prettier: ^3.2.5
+    dependencies:
+      prettier: 3.2.5
+    dev: true
 
   /@rollup/rollup-android-arm-eabi@4.12.1:
     resolution: {integrity: sha512-iU2Sya8hNn1LhsYyf0N+L4Gf9Qc+9eBTJJJsaOGUp+7x4n2M9dxTt8UvhJl3oeftSjblSlpCfvjA/IfP3g5VjQ==}
