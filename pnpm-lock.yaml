@@ -12,8 +12,8 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   ts-clsx:
-    specifier: ^1.3.0
-    version: 1.3.0
+    specifier: ^2.0.0
+    version: 2.0.0
 
 devDependencies:
   '@mancuoj/prettier-config':
@@ -649,8 +649,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /ts-clsx@1.3.0:
-    resolution: {integrity: sha512-y+5X0Vf/1qU1+tL+ATBWY2KHemv/8xLNrBpGf2NF52Ol2qw/cnGQIAIN7U+rHG1+ZG2YVBryc4iI5vjfPqneww==}
+  /ts-clsx@2.0.0:
+    resolution: {integrity: sha512-E+ruW8mVvAO0kS9ERkJG0LfIOf6kGfRwuVa4/XFfcSezFcBuD8ktJjeXf9OjbQRArcYeXfxSiLyyu6L+z7CFhA==}
     dev: false
 
   /typescript@5.4.2:
