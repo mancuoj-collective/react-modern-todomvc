@@ -8,16 +8,16 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ts-clsx": "^1.2.0"
+    "ts-clsx": "^1.3.0"
   },
   "devDependencies": {
     "@mancuoj/prettier-config": "^0.0.1",
-    "@types/react": "^18.2.64",
-    "@types/react-dom": "^18.2.21",
+    "@types/react": "^18.2.67",
+    "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.2",
-    "vite": "^5.1.5"
+    "vite": "^5.1.6"
   },
   "prettier": "@mancuoj/prettier-config"
 }
