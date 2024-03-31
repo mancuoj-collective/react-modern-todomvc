@@ -17,10 +17,7 @@ function Filter({ filter }: { filter: VisibilityType }) {
   const { visibility, setVisibility } = useVisibility()
   return (
     <li>
-      <a
-        className={clsx({ selected: visibility === filter })}
-        onClick={() => setVisibility(filter)}
-      >
+      <a className={clsx({ selected: visibility === filter })} onClick={() => setVisibility(filter)}>
         {filter.charAt(0).toUpperCase() + filter.slice(1)}
       </a>
     </li>

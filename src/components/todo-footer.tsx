@@ -28,10 +28,7 @@ function TodoCount({ remaining }: { remaining: number }) {
 
 function ClearButton({ dispatch }: { dispatch: React.Dispatch<ActionType> }) {
   return (
-    <button
-      className="clear-completed"
-      onClick={() => dispatch({ type: 'remove-completed' })}
-    >
+    <button className="clear-completed" onClick={() => dispatch({ type: 'clear' })}>
       Clear completed
     </button>
   )

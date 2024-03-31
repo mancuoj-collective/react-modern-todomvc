@@ -50,10 +50,7 @@ export default function TodoItem({ todo }: { todo: Todo }) {
           }}
         />
         <label onDoubleClick={() => setIsEditing(true)}>{todo.title}</label>
-        <button
-          className="destroy"
-          onClick={() => dispatch({ type: 'remove', id: todo.id })}
-        ></button>
+        <button className="destroy" onClick={() => dispatch({ type: 'remove', id: todo.id })}></button>
       </div>
       {isEditing && (
         <input
