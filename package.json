@@ -12,12 +12,12 @@
   },
   "devDependencies": {
     "@mancuoj/prettier-config": "^0.1.4",
-    "@types/react": "^18.2.73",
-    "@types/react-dom": "^18.2.23",
+    "@types/react": "^18.2.77",
+    "@types/react-dom": "^18.2.25",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.3",
-    "vite": "^5.2.7"
+    "typescript": "^5.4.5",
+    "vite": "^5.2.8"
   },
   "prettier": "@mancuoj/prettier-config"
 }
